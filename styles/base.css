@@ -1,0 +1,141 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Courier New', monospace;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
+
+h1 {
+    font-size: 3rem;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+h2 {
+    font-size: 2rem;
+    color: var(--neon-green);
+}
+
+.view-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+}
+
+/* Sci-fi Background Effects */
+.view-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background:
+        radial-gradient(circle at 20% 80%, var(--neon-purple-glow) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, var(--neon-green-glow) 0%, transparent 50%),
+        radial-gradient(circle at 40% 40%, var(--cyber-blue) 0%, transparent 50%);
+    animation: spaceGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes spaceGlow {
+    0% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0.6;
+        transform: scale(1.05);
+    }
+}
+
+/* Landing Content Styles */
+.landing-content {
+    text-align: center;
+    z-index: 2;
+    position: relative;
+    padding: 0 1rem;
+}
+
+.landing-content h1 {
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: var(--neon-green);
+    text-shadow: 0 0 20px var(--neon-green-glow);
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+    padding: 1rem 2rem;
+}
+
+.landing-content h1::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    background: linear-gradient(45deg, var(--neon-green), var(--cyber-blue), var(--neon-purple), var(--neon-green)) border-box;
+    background-clip: border-box;
+    mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    animation: laserTrace 5s ease-in-out forwards;
+    opacity: 0;
+}
+
+/* Mobile adjustments for laser trace */
+@media (max-width: 767px) {
+    .landing-content h1 {
+        padding: 0.5rem 1rem;
+    }
+    
+    .landing-content h1::before {
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        border-width: 1px;
+    }
+}
+
+@keyframes laserTrace {
+    0% {
+        opacity: 0;
+        clip-path: polygon(0% 0%, 0% 0%, 0% 0%, 0% 0%);
+    }
+    25% {
+        opacity: 1;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
+    }
+    50% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 0%);
+    }
+    75% {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+    100% {
+        opacity: 1;
+        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+}
+
+.landing-content p {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+}

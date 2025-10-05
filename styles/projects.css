@@ -1,0 +1,203 @@
+#projects-view {
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
+.projects-content {
+    z-index: 2;
+    position: relative;
+    padding: 2rem;
+    height: 100vh;
+    width: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.projects-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem 0;
+    flex: 1;
+}
+
+.project-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(0, 255, 136, 0.1);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover {
+    border-color: var(--neon-green-glow);
+    background: rgba(0, 255, 136, 0.05);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 255, 136, 0.1);
+}
+
+/* Desktop Layout - Alternating Left/Right */
+@media (min-width: 768px) {
+    .project-card {
+        flex-direction: row;
+        align-items: center;
+        min-height: 300px;
+    }
+    
+    .project-card:nth-child(odd) {
+        flex-direction: row;
+    }
+    
+    .project-card:nth-child(even) {
+        flex-direction: row-reverse;
+    }
+    
+    .project-image-container {
+        flex: 0 0 40%;
+        max-width: 400px;
+    }
+    
+    .project-content {
+        flex: 1;
+        padding: 0 2rem;
+    }
+}
+
+/* Mobile Layout - Condensed */
+@media (max-width: 767px) {
+    .projects-content {
+        padding: 1rem;
+    }
+    
+    .project-card {
+        padding: 1.5rem;
+        gap: 1rem;
+    }
+    
+    .project-image-container {
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+    
+    .project-content {
+        text-align: center;
+    }
+}
+
+.project-image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.project-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image {
+    transform: scale(1.05);
+}
+
+.project-content h2 {
+    font-size: 2rem;
+    color: var(--neon-green);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px var(--neon-green-glow);
+}
+
+.project-description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.project-tech {
+    font-size: 1rem;
+    color: var(--text-primary);
+    letter-spacing: 1px;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+}
+
+.project-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.project-link {
+    font-size: 1rem;
+    color: var(--text-primary);
+    letter-spacing: 1px;
+    text-decoration: none;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--neon-green-glow);
+    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--neon-green-glow), transparent);
+    transition: left 0.6s ease;
+}
+
+.project-link:hover {
+    background: rgba(0, 255, 136, 0.1);
+    border-color: var(--neon-green);
+    color: var(--neon-green);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px var(--neon-green-glow);
+}
+
+.project-link:hover::before {
+    left: 100%;
+}
+
+/* Mobile specific adjustments */
+@media (max-width: 767px) {
+    .project-image {
+        height: 200px;
+    }
+    
+    .project-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .project-description {
+        font-size: 1rem;
+    }
+    
+    .project-tech {
+        font-size: 0.9rem;
+    }
+    
+    .project-link {
+        font-size: 0.9rem;
+        padding: 0.6rem 1.2rem;
+    }
+}
