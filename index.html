@@ -10,6 +10,21 @@
 </head>
 
 <body>
+    <!-- Hamburger Navigation Menu -->
+    <div class="hamburger-menu" id="hamburger-menu">
+        <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+        <nav class="nav-menu" id="nav-menu">
+            <a href="#landing-view" class="nav-link" data-target="landing-view">Home</a>
+            <a href="#about-view" class="nav-link" data-target="about-view">About</a>
+            <a href="#projects-view" class="nav-link" data-target="projects-view">Projects</a>
+            <a href="#contact-view" class="nav-link" data-target="contact-view">Contact</a>
+        </nav>
+    </div>
+
     <div class="main">
 
         <!-- Landing View -->
@@ -193,6 +208,45 @@
                 </div>
             </div>
         </div>
+
+    </div>
+
+    <script>
+        // Hamburger Menu Toggle
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const navMenu = document.getElementById('nav-menu');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        hamburgerBtn.addEventListener('click', () => {
+            hamburgerBtn.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Navigate to sections and close menu
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('data-target');
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+                
+                // Close menu after clicking
+                hamburgerBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.hamburger-menu')) {
+                hamburgerBtn.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    </script>
 
 </body>
 
