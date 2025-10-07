@@ -44,11 +44,11 @@
                     programming microchips like ESP32 annd Arduino. I'm a quick learner
                     and I'm always looking to improve my skills.</p>
                 <div class="about-skills">
-                    <h2>Skills</h2>
+                    <!-- <h2>Skills</h2> -->
                     <div class="skills-container">
                         <!-- Frontend Technologies -->
                         <div class="skill-row">
-                            <div class="skill-category">Frontend</div>
+                            <div class="skill-category left-align">Frontend</div>
                             <div class="skill-items">
                                 <div class="skill-item">HTML</div>
                                 <div class="skill-item">CSS</div>
@@ -64,7 +64,7 @@
 
                         <!-- Backend Technologies -->
                         <div class="skill-row">
-                            <div class="skill-category">Backend</div>
+                            <div class="skill-category left-align">Backend</div>
                             <div class="skill-items">
                                 <div class="skill-item">Node.js</div>
                                 <div class="skill-item">Express</div>
@@ -77,7 +77,7 @@
 
                         <!-- Database Technologies -->
                         <div class="skill-row">
-                            <div class="skill-category">Database</div>
+                            <div class="skill-category left-align">Database</div>
                             <div class="skill-items">
                                 <div class="skill-item">Firebase</div>
                                 <div class="skill-item">SQLAlchemy</div>
@@ -89,7 +89,7 @@
 
                         <!-- Tools & Platforms -->
                         <div class="skill-row">
-                            <div class="skill-category">Tools & Platforms</div>
+                            <div class="skill-category left-align">Tools & Platforms</div>
                             <div class="skill-items">
                                 <div class="skill-item">Git</div>
                                 <div class="skill-item">GitHub</div>
@@ -104,7 +104,7 @@
 
                         <!-- Hardware & IoT -->
                         <div class="skill-row">
-                            <div class="skill-category">Hardware & IoT</div>
+                            <div class="skill-category left-align">Hardware & IoT</div>
                             <div class="skill-items">
                                 <div class="skill-item">Arduino</div>
                                 <div class="skill-item">ESP32</div>
@@ -246,6 +246,43 @@
                 navMenu.classList.remove('active');
             }
         });
+
+        // Skills Animation on Scroll
+        const aboutView = document.getElementById('about-view');
+        const skillRows = document.querySelectorAll('.skill-row');
+        let skillsAnimated = false;
+
+        // Intersection Observer to detect when About section is visible
+        const observerOptions = {
+            root: null,
+            threshold: 0.3, // Trigger when 30% of section is visible
+            rootMargin: '0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !skillsAnimated) {
+                    skillsAnimated = true;
+                    
+                    // Animate each skill row
+                    skillRows.forEach((row, index) => {
+                        const skillItems = row.querySelector('.skill-items');
+                        
+                        // Alternate between left and right animations
+                        if (index % 2 === 0) {
+                            skillItems.classList.add('animate');
+                        } else {
+                            skillItems.classList.add('animate-right');
+                        }
+                    });
+                }
+            });
+        }, observerOptions);
+
+        // Observe the About section
+        if (aboutView) {
+            observer.observe(aboutView);
+        }
     </script>
 
 </body>
