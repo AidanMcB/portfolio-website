@@ -4,7 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aidan McBride</title>
+    <meta name="description"
+        content="Aidan McBride — frontend engineer focused on Vue, TypeScript, and polished UI. Portfolio, projects, and contact.">
+    <meta name="theme-color" content="#0a0a0f">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Aidan McBride — Frontend Engineer">
+    <meta property="og:description"
+        content="Frontend engineer focused on Vue, TypeScript, and clear UX. View projects and get in touch.">
+    <title>Aidan McBride — Frontend Engineer</title>
     <link rel="stylesheet" href="styles/index.css">
     <link rel="icon" type="image/png" href="./assets/favicon.png" sizes="16x16">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
@@ -13,13 +20,14 @@
 <body>
     <!-- Hamburger Navigation Menu -->
     <div class="hamburger-menu" id="hamburger-menu">
-        <button class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu">
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
+        <button type="button" class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation menu"
+            aria-expanded="false" aria-controls="nav-menu">
+            <span class="hamburger-line" aria-hidden="true"></span>
+            <span class="hamburger-line" aria-hidden="true"></span>
+            <span class="hamburger-line" aria-hidden="true"></span>
         </button>
-        <nav class="nav-menu" id="nav-menu">
-            <a href="#landing-view" class="nav-link" data-target="landing-view">Home</a>
+        <nav class="nav-menu" id="nav-menu" aria-label="Primary">
+            <a href="#landing-view" class="nav-link" data-target="landing-view" aria-current="page">Home</a>
             <a href="#about-view" class="nav-link" data-target="about-view">About</a>
             <a href="#projects-view" class="nav-link" data-target="projects-view">Projects</a>
             <a href="#contact-view" class="nav-link" data-target="contact-view">Contact</a>
@@ -40,10 +48,8 @@
         <div class="view-container" id="about-view">
             <div class="about-content">
                 <h1>About</h1>
-                <p class="about-text">I'm a Frontend Engineer with a passion for building user-friendly and efficient
-                    web applications. I'm currently working with a focus on Vue.js and Tailwind CSS. Recently I got into
-                    programming microchips like ESP32 annd Arduino. I'm a quick learner
-                    and I'm always looking to improve my skills.</p>
+                <p class="about-text">Frontend engineer focused on Vue and Tailwind. I ship clear UI and solid UX. I also
+                    tinker with ESP32 and Arduino—always learning.</p>
                 <div class="about-skills">
                     <!-- <h2>Skills</h2> -->
                     <div class="skills-container">
@@ -138,18 +144,15 @@
                         </div>
                         <div class="project-content">
                             <h2>Gaeilge App</h2>
-                            <p clasbs="project-description">A language learning app that teaches Irish words and phrases.
-                            </p>
-                            <p class="project-tech">Utilizes Vue.js, TypeScript, Pinia, Tailwind CSS, and Primevue on
-                                the
-                                frontend. The backend is built on Node.js and Express and Postgres.</p>
+                            <p class="project-description">Irish language learning: words, phrases, and practice flows.</p>
+                            <p class="project-tech">Vue, TypeScript, Pinia, Tailwind, PrimeVue. Node, Express, Postgres.</p>
                             <div class="project-links">
                                 <a class="project-link" href="https://github.com/AidanMcB/gaeilge-app"
-                                    target="_blank">GitHub - FE</a>
+                                    target="_blank" rel="noopener noreferrer">GitHub - FE</a>
                                 <a class="project-link" href="https://github.com/AidanMcB/gaeilge-app-api"
-                                    target="_blank">GitHub - BE</a>
+                                    target="_blank" rel="noopener noreferrer">GitHub - BE</a>
                                 <a class="project-link" href="https://gaeilge-app.vercel.app/"
-                                    target="_blank">Website</a>
+                                    target="_blank" rel="noopener noreferrer">Website</a>
                             </div>
                         </div>
                     </div>
@@ -161,18 +164,11 @@
                         </div>
                         <div class="project-content">
                             <h2>Open Toad Productions</h2>
-                            <p class="project-description">A website for the Open Toad Productions booking company,
-                                based in
-                                Houston Texas.</p>
-                            <p class="project-tech">Utilizes Vue.js, TypeScript, Tailwind CSS, and Vercel on the
-                                frontend.
-                                The backend is a mix of Sanity.io CMS and a Cloudflare worker that acts as a proxy,
-                                allowing
-                                the website to be updated directly by the company owner.</p>
+                            <p class="project-description">Booking site for Open Toad Productions (Houston).</p>
+                            <p class="project-tech">Vue, TypeScript, Tailwind, Vercel. Sanity CMS + Cloudflare worker so the owner can update content.</p>
                             <div class="project-links">
-                                <a class="project-link" href="" target="_blank">GitHub</a>
                                 <a class="project-link" href="https://www.opentoadproductions.net/"
-                                    target="_blank">Website</a>
+                                    target="_blank" rel="noopener noreferrer">Website</a>
                             </div>
                         </div>
 
@@ -187,23 +183,22 @@
                 <h1>Contact</h1>
                 <p>Let's connect.</p>
                 <div class="contact-form">
-                    <label for="email-input">Email</label>
-                    <input class="email-input" type="email" id="email-input" placeholder="Email">
-                    <label for="email-input">Message</label>
-                    <textarea class="email-input" type="text" id="email-input" placeholder="Message" cols="30"
-                        rows="10"></textarea>
-                    <input class="email-submit-button" type="button" value="Send Email" id="send-email-button"
-                        mailto:aidankmcbride@gmail.com?subject=Contact&body=Hi Aidan, I'm interested in your services.>
+                    <label for="contact-email-input">Email</label>
+                    <input class="email-input" type="email" id="contact-email-input" name="email" autocomplete="email"
+                        placeholder="you@example.com">
+                    <label for="contact-message-input">Message</label>
+                    <textarea class="email-input" id="contact-message-input" name="message" placeholder="Message"
+                        rows="4" cols="30"></textarea>
+                    <button type="button" class="email-submit-button" id="send-email-button">Open in email app</button>
                 </div>
                 <p> Or you can reach me on:</p>
                 <div class="contact-info">
                     <p class="contact-link"><a href="https://www.linkedin.com/in/aidan-mcbride-52b6261a9/"
-                            target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a></p>
-                    <p class="contact-link"><a href="https://github.com/AidanMcB" target="_blank"><i
-                                class="fab fa-github"></i>GitHub</a></p>
+                            target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin" aria-hidden="true"></i>LinkedIn</a></p>
+                    <p class="contact-link"><a href="https://github.com/AidanMcB" target="_blank"
+                            rel="noopener noreferrer"><i class="fab fa-github" aria-hidden="true"></i>GitHub</a></p>
                     <p class="contact-link">
-                        <a href="mailto:aidankmcbride@gmail.com" target="_blank"><i
-                                class="fas fa-envelope"></i>aidankmcbride@gmail.com</a>
+                        <a href="mailto:aidankmcbride@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i>aidankmcbride@gmail.com</a>
                     </p>
                     <!-- <p>Medium: <a href="https://medium.com/@aidankmcbride" target="_blank">Medium</a></p> -->
                 </div>
@@ -212,79 +207,7 @@
 
     </div>
 
-    <script>
-        // Hamburger Menu Toggle
-        const hamburgerBtn = document.getElementById('hamburger-btn');
-        const navMenu = document.getElementById('nav-menu');
-        const navLinks = document.querySelectorAll('.nav-link');
-
-        hamburgerBtn.addEventListener('click', () => {
-            hamburgerBtn.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-
-        // Navigate to sections and close menu
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('data-target');
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-                
-                // Close menu after clicking
-                hamburgerBtn.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.hamburger-menu')) {
-                hamburgerBtn.classList.remove('active');
-                navMenu.classList.remove('active');
-            }
-        });
-
-        // Skills Animation on Scroll
-        const aboutView = document.getElementById('about-view');
-        const skillRows = document.querySelectorAll('.skill-row');
-        let skillsAnimated = false;
-
-        // Intersection Observer to detect when About section is visible
-        const observerOptions = {
-            root: null,
-            threshold: 0.3, // Trigger when 30% of section is visible
-            rootMargin: '0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !skillsAnimated) {
-                    skillsAnimated = true;
-                    
-                    // Animate each skill row
-                    skillRows.forEach((row, index) => {
-                        const skillItems = row.querySelector('.skill-items');
-                        
-                        // Alternate between left and right animations
-                        if (index % 2 === 0) {
-                            skillItems.classList.add('animate');
-                        } else {
-                            skillItems.classList.add('animate-right');
-                        }
-                    });
-                }
-            });
-        }, observerOptions);
-
-        // Observe the About section
-        if (aboutView) {
-            observer.observe(aboutView);
-        }
-    </script>
+    <script src="main.js" defer></script>
 
 </body>
 
