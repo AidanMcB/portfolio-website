@@ -207,8 +207,8 @@ if (sendBtn && emailInput && messageInput && formStatus) {
             return;
         }
 
-        if (FORMSPREE_ID === 'xeevjdzo') {
-            // Fallback to mailto: until Formspree is configured
+        if (!FORMSPREE_ID || FORMSPREE_ID === 'YOUR_FORM_ID') {
+            // Fallback to mailto: when Formspree hasn't been configured yet
             const subject = encodeURIComponent('Portfolio contact');
             const body = encodeURIComponent(`From: ${email}\n\n${message}`);
             window.location.href = `mailto:aidankmcbride@gmail.com?subject=${subject}&body=${body}`;
