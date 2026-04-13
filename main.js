@@ -190,6 +190,7 @@ const sendBtn = document.getElementById('send-email-button');
 const emailInput = document.getElementById('contact-email-input');
 const messageInput = document.getElementById('contact-message-input');
 const formStatus = document.getElementById('contact-form-status');
+const honeypot = document.getElementById('contact-honeypot');
 
 function setFormStatus(message, type) {
     if (!formStatus) return;
@@ -202,8 +203,16 @@ if (sendBtn && emailInput && messageInput && formStatus) {
         const email = emailInput.value.trim();
         const message = messageInput.value.trim();
 
+        if (honeypot && honeypot.value) return;
+
         if (!email || !message) {
             setFormStatus('Please fill in both fields before sending.', 'error');
+            return;
+        }
+
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            setFormStatus('Please enter a valid email address.', 'error');
             return;
         }
 
@@ -226,7 +235,7 @@ if (sendBtn && emailInput && messageInput && formStatus) {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                 },
-                body: JSON.stringify({ email, message }),
+                body: JSON.stringify({ email, message, _gotcha: '' }),
             });
 
             if (response.ok) {
