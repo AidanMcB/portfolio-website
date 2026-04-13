@@ -42,47 +42,43 @@ h2 {
     scroll-snap-stop: always;
 }
 
-/* Sci-fi Background Effects */
+/* Ambient background — opacity-only for GPU compositor efficiency */
 .view-container::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    inset: 0;
     background:
         radial-gradient(circle at 20% 80%, var(--neon-purple-glow) 0%, transparent 50%),
         radial-gradient(circle at 80% 20%, var(--neon-green-glow) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, var(--cyber-blue) 0%, transparent 50%);
-    animation: spaceGlow 4s ease-in-out infinite alternate;
+        radial-gradient(circle at 40% 40%, rgba(56, 189, 248, 0.04) 0%, transparent 50%);
+    animation: spaceGlow 5s ease-in-out infinite alternate;
+    will-change: opacity;
+    pointer-events: none;
 }
 
 @keyframes spaceGlow {
-    0% {
-        opacity: 0.3;
-        transform: scale(1);
-    }
-
-    100% {
-        opacity: 0.6;
-        transform: scale(1.05);
-    }
+    0%   { opacity: 0.4; }
+    100% { opacity: 0.8; }
 }
 
-/* Landing Content Styles */
+/* Landing Content */
 .landing-content {
     text-align: center;
     z-index: 2;
     position: relative;
     padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .landing-content h1 {
     font-size: clamp(2rem, 6vw, 3.25rem);
     font-weight: 700;
     color: var(--neon-green);
-    text-shadow: 0 0 14px var(--neon-green-glow);
-    margin-bottom: 1rem;
+    text-shadow: 0 0 20px var(--neon-green-glow);
+    margin-bottom: 0.25rem;
     letter-spacing: 0.04em;
     font-family: var(--font-mono, ui-monospace, monospace);
     position: relative;
@@ -97,7 +93,7 @@ h2 {
     left: -4px;
     right: -4px;
     bottom: -4px;
-    border: 2px solid transparent;
+    border: 1.5px solid transparent;
     border-radius: 8px;
     background: linear-gradient(45deg, var(--neon-green), var(--cyber-blue), var(--neon-purple), var(--neon-green)) border-box;
     background-clip: border-box;
@@ -107,12 +103,11 @@ h2 {
     opacity: 0;
 }
 
-/* Mobile adjustments for laser trace */
 @media (max-width: 767px) {
     .landing-content h1 {
         padding: 0.5rem 1rem;
     }
-    
+
     .landing-content h1::before {
         top: -2px;
         left: -2px;
@@ -123,38 +118,51 @@ h2 {
 }
 
 @keyframes laserTrace {
-    0% {
-        opacity: 0;
-        clip-path: polygon(0% 0%, 0% 0%, 0% 0%, 0% 0%);
-    }
-    25% {
-        opacity: 1;
-        clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%);
-    }
-    50% {
-        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 0%);
-    }
-    75% {
-        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-    }
-    100% {
-        opacity: 1;
-        clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
-    }
+    0%   { opacity: 0; clip-path: polygon(0% 0%, 0% 0%, 0% 0%, 0% 0%); }
+    25%  { opacity: 1; clip-path: polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%); }
+    50%  { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 0%); }
+    75%  { clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); }
+    100% { opacity: 1; clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); }
 }
 
-.landing-content p {
+.landing-subtitle {
     font-size: clamp(1rem, 2.5vw, 1.35rem);
     color: var(--text-secondary);
     letter-spacing: 0.02em;
     font-weight: 500;
 }
 
-/* Focus visibility (keyboard users) */
-:focus {
-    outline: none;
+.landing-tagline {
+    font-size: clamp(0.85rem, 1.8vw, 1rem);
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+    font-weight: 400;
+    margin-top: 0.25rem;
 }
 
+.landing-chevron {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--neon-green);
+    opacity: 0.5;
+    margin-top: 1.75rem;
+    text-decoration: none;
+    border-radius: 50%;
+    transition: opacity 0.2s ease;
+    animation: chevronBounce 2.2s ease-in-out infinite;
+}
+
+.landing-chevron:hover {
+    opacity: 0.9;
+}
+
+@keyframes chevronBounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(7px); }
+}
+
+/* Focus visibility */
 :focus-visible {
     outline: 2px solid var(--neon-green);
     outline-offset: 3px;
@@ -163,13 +171,16 @@ h2 {
 @media (prefers-reduced-motion: reduce) {
     .view-container::before {
         animation: none;
-        opacity: 0.4;
-        transform: none;
+        opacity: 0.5;
     }
 
     .landing-content h1::before {
         animation: none;
         opacity: 1;
         clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    }
+
+    .landing-chevron {
+        animation: none;
     }
 }

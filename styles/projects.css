@@ -100,7 +100,7 @@
 
 .project-tech {
     font-size: clamp(0.82rem, 1.4vw, 0.9rem);
-    color: var(--text-muted);
+    color: var(--text-secondary);
     letter-spacing: 0.02em;
     line-height: 1.5;
     margin: 0;

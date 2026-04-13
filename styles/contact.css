@@ -132,6 +132,29 @@
     outline-offset: 2px;
 }
 
+.email-submit-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.contact-form-status {
+    min-height: 1.25rem;
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 0.1rem 0;
+    letter-spacing: 0.01em;
+    line-height: 1.5;
+}
+
+.contact-form-status.success {
+    color: var(--neon-green);
+}
+
+.contact-form-status.error {
+    color: #f87171;
+}
+
 .contact-info {
     display: flex;
     flex-direction: column;
