@@ -1,5 +1,5 @@
 // ── Replace with your Formspree form ID after signing up at https://formspree.io
-const FORMSPREE_ID = 'YOUR_FORM_ID';
+const FORMSPREE_ID = 'xeevjdzo';
 
 const mainEl = document.querySelector('.main');
 const hamburgerBtn = document.getElementById('hamburger-btn');
@@ -207,7 +207,7 @@ if (sendBtn && emailInput && messageInput && formStatus) {
             return;
         }
 
-        if (FORMSPREE_ID === 'YOUR_FORM_ID') {
+        if (FORMSPREE_ID === 'xeevjdzo') {
             // Fallback to mailto: until Formspree is configured
             const subject = encodeURIComponent('Portfolio contact');
             const body = encodeURIComponent(`From: ${email}\n\n${message}`);
