@@ -19,7 +19,6 @@ html, body {
     width: 100%;
     overflow-x: hidden;
     overflow-y: auto;
-    scroll-snap-type: y mandatory;
 }
 
 :root {
@@ -51,7 +50,7 @@ html, body {
     /* Text */
     --text-primary: #f1f5f9;
     --text-secondary: #b8b8d1;
-    --text-muted: #6b7280;
+    --text-muted: #737b8c;
 
     /* Backgrounds */
     --bg-primary: linear-gradient(135deg, var(--space-black) 0%, var(--space-dark) 50%, var(--space-gray) 100%);

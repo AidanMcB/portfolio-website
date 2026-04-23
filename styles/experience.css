@@ -16,10 +16,6 @@
     gap: 2rem;
 }
 
-.experience-content > h1 {
-    margin: 0;
-    line-height: 1.15;
-}
 
 /* Timeline list */
 .timeline {

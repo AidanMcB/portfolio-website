@@ -1,56 +1,77 @@
 # Portfolio site
 
-Static personal portfolio for [Aidan McBride](https://github.com/AidanMcB), a frontend engineer. It is a single-page site with full-viewport sections, vertical scroll snapping, and no build step—plain HTML, CSS, and a small amount of vanilla JavaScript.
+Static personal portfolio for [Aidan McBride](https://github.com/AidanMcB), a frontend engineer. Single-page layout with full-viewport sections, **no build step** — plain HTML, modular CSS, and vanilla ES modules.
 
 ## Features
 
-- **Landing** — Name and role.
-- **About** — Short bio, skill tags grouped by category (Frontend, Backend, Database, Tools & Platforms, Hardware & IoT), and a link to download the resume PDF (`assets/AidanMcBride_Resume_2025.pdf`).
-- **Projects** — Featured project cards (e.g. Gaeilge App, Open Toad Productions) with descriptions, tech notes, and external links.
-- **Contact** — Email and message fields plus links to LinkedIn, GitHub, and email.
-- **Navigation** — Hamburger menu that opens an overlay nav, smooth scrolling to each section, and a one-time skills animation when the About section enters the viewport (`IntersectionObserver` in inline script).
+- **Landing** — Name, role, and tagline.
+- **About** — Bio, skill badges (semantic lists), resume download (`assets/AidanMcBride_Resume_2025.pdf`).
+- **Experience** — Work history timeline.
+- **Projects** — Featured cards (e.g. Gaeilge App, Open Toad Productions) with descriptions, tech notes, and external links.
+- **Contact** — Form (Formspree) plus LinkedIn, GitHub, and email.
+- **Navigation** — Side dots (desktop), hamburger overlay (mobile), smooth scroll to sections, and a one-time skills row animation when About enters the viewport (`IntersectionObserver`).
+- **Accessibility** — Skip link, semantic landmarks (`<main>`, `<section>`), sensible heading order (one `<h1>`), focus-visible styles, reduced-motion support, live region for form status.
 
 ## Tech stack
 
-- **HTML5** — Single entry: `index.html`.
-- **CSS** — Modular sheets imported from `styles/index.css`: `base.css`, `nav.css`, `about.css`, `projects.css`, `contact.css` (space-themed palette, scroll snap on the main scroll container).
-- **JavaScript** — Inline in `index.html` for menu behavior, smooth scroll, and the About-section skills animation.
-- **Font Awesome 6** — Loaded from CDN for social icons.
+- **HTML5** — Single entry: [`index.html`](index.html).
+- **CSS** — Aggregated in [`styles/index.css`](styles/index.css): [`base.css`](styles/base.css), [`nav.css`](styles/nav.css), [`about.css`](styles/about.css), [`experience.css`](styles/experience.css), [`projects.css`](styles/projects.css), [`contact.css`](styles/contact.css).
+- **JavaScript** — [`main.js`](main.js) (`type="module"`) imports [`js/nav.js`](js/nav.js), [`js/scroll.js`](js/scroll.js), [`js/skills.js`](js/skills.js), and [`js/contact.js`](js/contact.js). Each module is documented with JSDoc.
+- **Fonts** — [Geist](https://fonts.google.com/) via Google Fonts; critical stylesheet is also `preload`ed in HTML.
+- **Icons** — Inline SVGs in HTML (no icon font CDN).
 
 ## Project structure
 
 ```
-portfolio-site/
+portfolio-website/
 ├── index.html
+├── main.js              # ES module entry
+├── CNAME                # Custom domain (e.g. GitHub Pages)
 ├── README.md
-├── assets/          # favicon, resume PDF, project images
+├── assets/              # favicon, resume PDF, project images (not always tracked)
+├── js/
+│   ├── nav.js           # Hamburger, focus trap, outside click
+│   ├── scroll.js        # Section observer, smooth scroll
+│   ├── skills.js        # About section skill animation
+│   └── contact.js       # Form validation + Formspree
 └── styles/
-    ├── index.css    # imports other stylesheets
+    ├── index.css
     ├── base.css
     ├── nav.css
     ├── about.css
+    ├── experience.css
     ├── projects.css
     └── contact.css
 ```
 
 ## Local preview
 
-1. **Open directly** — Double-click `index.html` or open it from your browser’s File menu.
+Use a static server so ES modules and `@import` resolve correctly:
 
-2. **Static server (recommended)** — From the repository root, serve the folder so paths and CSS `@import` resolve predictably:
+```bash
+npx serve .
+```
 
-   ```bash
-   npx serve .
-   ```
+or:
 
-   or:
+```bash
+python3 -m http.server 8000
+```
 
-   ```bash
-   python3 -m http.server 8000
-   ```
-
-   Then visit the URL the tool prints (often `http://localhost:3000` or `http://localhost:8000`).
+Then open the URL shown (e.g. `http://localhost:3000`).
 
 ## Deployment
 
-This site is static files only; host the repository root (or the built folder if you ever add a build) on any static host such as GitHub Pages, Netlify, or Vercel.
+Host the repository root on any static host (GitHub Pages, Netlify, Vercel, etc.). For social previews, `og:image` and related tags use the production domain (`aidan-mcbride.com`); ensure that URL serves your assets.
+
+## Content roadmap (follow-up)
+
+Ideas for the next iteration of copy and structure:
+
+- **Current role** — Day-to-day impact, scale, and what you want employers to remember.
+- **Positioning** — Broader than a single framework; align hero, About, and meta descriptions.
+- **Projects** — Which work best shows depth; add or retire cards as needed.
+
+## Configuration
+
+- **Contact form** — Set `FORMSPREE_ID` in [`js/contact.js`](js/contact.js) (or replace with your Formspree endpoint). Until configured, the UI can fall back to `mailto:` when the placeholder id is used.

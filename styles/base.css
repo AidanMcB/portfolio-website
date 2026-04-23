@@ -12,6 +12,29 @@ body {
     overflow-x: hidden;
 }
 
+/* First focusable control: skip past decorative side nav */
+.skip-link {
+    position: absolute;
+    top: -100vh;
+    left: 0.75rem;
+    z-index: 10000;
+    padding: 0.65rem 1rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--space-black);
+    background: var(--neon-green);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: top 0.15s ease;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+    top: 0.75rem;
+    outline: 2px solid var(--text-primary);
+    outline-offset: 3px;
+}
+
 h1 {
     font-size: clamp(1.75rem, 5vw, 3rem);
     font-weight: 600;
@@ -27,6 +50,25 @@ h2 {
     letter-spacing: -0.02em;
 }
 
+/* Section titles (About, Experience, …) — one h1 on page is landing only */
+h2.section-heading {
+    font-size: clamp(1.75rem, 5vw, 3rem);
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-align: center;
+    letter-spacing: -0.02em;
+    margin: 0;
+    line-height: 1.15;
+}
+
+h3 {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    font-weight: 600;
+    color: var(--neon-green);
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
 .left-align {
     text-align: left;
 }
@@ -38,8 +80,6 @@ h2 {
     justify-content: center;
     align-items: center;
     position: relative;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
 }
 
 /* Ambient background — opacity-only for GPU compositor efficiency */
